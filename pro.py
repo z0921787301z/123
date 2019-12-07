@@ -321,11 +321,12 @@ def lineBot(op):
                     k2.sendMessage(to,"喵‼")
                     k3.sendMessage(to,"喵...")
                     k4.sendMessage(to,"喵？")
-                elif text.lower() == 'speed':
-                    start = time.time()
-                    cl.sendMessage(to, "計算中...")
-                    elapsed_time = time.time() - start
-                    cl.sendMessage(to,format(str(elapsed_time)))
+                elif "speed" == op.message.text.lower():
+                    t1 = time.time()
+                    threading.Thread(target=cl.sendMessage, args=(op.message.to, "速度...",)).start()
+                    t2 = time.time() - t1
+                    time.sleep(1)
+                    return cl.sendMessage(op.message.to, "速度偵測為\n%s 秒" %t2)
                 elif text.lower() == 'gm':
                     G = cl.getGroup(to)
                     if G.id not in gp["s"] or gp["s"][G.id]==[]:
